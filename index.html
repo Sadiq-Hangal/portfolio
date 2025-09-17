@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Md Sadiq Hangal - Portfolio</title>
   <style>
+    /* ---------- Base ---------- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
+      transition: background 0.5s, color 0.5s;
     }
 
     body {
@@ -18,6 +20,12 @@
       scroll-behavior: smooth;
     }
 
+    body.light-mode {
+      background: linear-gradient(135deg, #ffffff, #f2f2f2, #dcdcdc);
+      color: #222;
+    }
+
+    /* ---------- Header ---------- */
     header {
       position: fixed;
       width: 100%;
@@ -29,6 +37,11 @@
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
+      transition: background 0.5s;
+    }
+
+    body.light-mode header {
+      background: rgba(255,255,255,0.9);
     }
 
     header h1 {
@@ -45,7 +58,7 @@
 
     nav a {
       text-decoration: none;
-      color: white;
+      color: inherit;
       margin: 0 15px;
       font-weight: 500;
       transition: 0.3s;
@@ -55,6 +68,22 @@
       color: #00e6e6;
     }
 
+    /* Toggle Button */
+    .toggle-btn {
+      cursor: pointer;
+      background: #00e6e6;
+      color: black;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .toggle-btn:hover {
+      background: #00ffff;
+    }
+
+    /* ---------- Sections ---------- */
     section {
       min-height: 100vh;
       padding: 100px 50px;
@@ -62,12 +91,8 @@
       flex-direction: column;
       justify-content: center;
       text-align: center;
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      opacity: 0;
+      transform: translateY(50px);
     }
 
     .hero h2 {
@@ -84,6 +109,7 @@
     .hero p {
       font-size: 20px;
       max-width: 600px;
+      margin: auto;
       animation: fadeIn 2s ease-in;
     }
 
@@ -99,12 +125,13 @@
       padding: 40px;
       max-width: 800px;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      animation: zoomIn 1.5s ease-in;
     }
 
-    @keyframes zoomIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    body.light-mode .skills,
+    body.light-mode .hobbies,
+    body.light-mode .interest {
+      background: rgba(0,0,0,0.05);
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
 
     h3 {
@@ -135,15 +162,21 @@
       background: #00ffff;
     }
 
+    /* ---------- Footer ---------- */
     footer {
       text-align: center;
       padding: 20px;
       background: rgba(0,0,0,0.7);
     }
 
+    body.light-mode footer {
+      background: rgba(255,255,255,0.9);
+    }
+
     footer p {
       color: #aaa;
     }
+
   </style>
 </head>
 <body>
@@ -156,6 +189,7 @@
       <a href="#hobbies">Hobbies</a>
       <a href="#interest">Interest</a>
     </nav>
+    <button class="toggle-btn" id="toggleBtn">Light Mode</button>
   </header>
 
   <section class="hero" id="hero">
@@ -197,7 +231,7 @@
   </footer>
 
   <script>
-    // Smooth scroll animation effect
+    // Smooth scroll animation
     document.querySelectorAll('nav a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -207,22 +241,30 @@
       });
     });
 
-    // Fade effect when scrolling into sections
+    // Fade in on scroll
     const sections = document.querySelectorAll("section");
     window.addEventListener("scroll", () => {
       sections.forEach(sec => {
         let top = window.scrollY;
-        let offset = sec.offsetTop - 200;
+        let offset = sec.offsetTop - 250;
         let height = sec.offsetHeight;
         if (top >= offset && top < offset + height) {
           sec.style.opacity = "1";
           sec.style.transform = "translateY(0)";
           sec.style.transition = "all 1s ease";
-        } else {
-          sec.style.opacity = "0.5";
-          sec.style.transform = "translateY(50px)";
         }
       });
+    });
+
+    // Dark/Light Mode Toggle
+    const toggleBtn = document.getElementById("toggleBtn");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("light-mode");
+      if(document.body.classList.contains("light-mode")){
+        toggleBtn.textContent = "Dark Mode";
+      } else {
+        toggleBtn.textContent = "Light Mode";
+      }
     });
   </script>
 </body>
