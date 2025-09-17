@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Md Sadiq Hangal - Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      padding: 20px 50px;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00e6e6;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #00e6e6; }
+      to { text-shadow: 0 0 20px #00ffff; }
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00e6e6;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 100px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero h2 {
+      font-size: 50px;
+      margin-bottom: 10px;
+      animation: slideIn 1.5s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 600px;
+      animation: fadeIn 2s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .skills, .hobbies, .interest {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      margin: 20px auto;
+      padding: 40px;
+      max-width: 800px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      animation: zoomIn 1.5s ease-in;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #00e6e6;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    ul li {
+      background: #00e6e6;
+      color: black;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: transform 0.3s;
+    }
+
+    ul li:hover {
+      transform: scale(1.1);
+      background: #00ffff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.7);
+    }
+
+    footer p {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Md Sadiq Hangal</h1>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#skills">Skills</a>
+      <a href="#hobbies">Hobbies</a>
+      <a href="#interest">Interest</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="hero">
+    <h2>Hello, I'm <span style="color:#00e6e6;">Md Sadiq Hangal</span></h2>
+    <p>A passionate learner, programmer, and explorer. I create, build, and dream big with technology and trading.</p>
+  </section>
+
+  <section id="skills" class="skills">
+    <h3>My Skills</h3>
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+      <li>Python</li>
+      <li>C</li>
+      <li>C++</li>
+      <li>Java</li>
+    </ul>
+  </section>
+
+  <section id="hobbies" class="hobbies">
+    <h3>My Hobbies</h3>
+    <ul>
+      <li>Driving</li>
+      <li>Farming</li>
+      <li>Body Building</li>
+      <li>Riding</li>
+      <li>Cycling</li>
+    </ul>
+  </section>
+
+  <section id="interest" class="interest">
+    <h3>Main Interest</h3>
+    <p style="font-size:20px;">My main interest lies in <b style="color:#00ffff;">Import, Export, and Trading</b>. I aim to build strong networks and global connections to achieve success in the business world.</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Md Sadiq Hangal | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Smooth scroll animation effect
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Fade effect when scrolling into sections
+    const sections = document.querySelectorAll("section");
+    window.addEventListener("scroll", () => {
+      sections.forEach(sec => {
+        let top = window.scrollY;
+        let offset = sec.offsetTop - 200;
+        let height = sec.offsetHeight;
+        if (top >= offset && top < offset + height) {
+          sec.style.opacity = "1";
+          sec.style.transform = "translateY(0)";
+          sec.style.transition = "all 1s ease";
+        } else {
+          sec.style.opacity = "0.5";
+          sec.style.transform = "translateY(50px)";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
